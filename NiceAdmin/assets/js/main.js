@@ -324,6 +324,8 @@ const auxtr=160406;
 const SBase=document.getElementById('IBC');
 const SMMLV=document.getElementById('minimos');
 const SMMLV2=document.getElementById('minimos2');
+const SMMLV3=document.getElementById('minimos3');
+const SMMLV4=document.getElementById('minimos4');
 let miSMMLV='';
 let calSMMLV=0;
 /*Variables Salud Empleador */
@@ -362,11 +364,23 @@ let calVaEmp=0;
 const TotEmp=document.getElementById('totemp');
 let miTotEmp='';
 let calTotEmp=0;
+/*variables ICBF Empleador */
+const ICBF=document.getElementById('icbf');
+let miICBF='';
+let calICBF=0;
+/*variables sena Empleador */
+const SENA=document.getElementById('sena');
+let miSENA='';
+let calSENA=0;
 /*variables prima junio y diciembre */
 const PriJun=document.getElementById('prijunio');
 const PriDic=document.getElementById('pridic');
 let miPriJun='';
 let calPriJun=0;
+/*Variable para el porcentaje total */
+const PTot=document.getElementById('ptot');
+let miPTot='';
+let calPTot=0;
 /*La funcion */
 
 function calcular(){
@@ -377,6 +391,8 @@ function calcular(){
     miSMMLV+=`<p>${calSMMLV}</p>`
     SMMLV.innerHTML=miSMMLV;
     SMMLV2.innerHTML=miSMMLV;
+    SMMLV3.innerHTML=miSMMLV;
+    SMMLV4.innerHTML=miSMMLV;
   }else{
     miSMMLV='';
     calSMMLV=SBase.value/SM;
@@ -384,6 +400,8 @@ function calcular(){
     miSMMLV+=`<p>${calSMMLV}</p>`
     SMMLV.innerHTML=miSMMLV;
     SMMLV2.innerHTML=miSMMLV;
+    SMMLV3.innerHTML=miSMMLV;
+    SMMLV4.innerHTML=miSMMLV;
   }
   /*Para Salud Empleador*/
 if(miSalE==''){
@@ -491,13 +509,13 @@ if(miPensE==''){
     }
   /*Funcion calculo Total Valor Empleado */
   if(miTotEmp==''){
-    calTotEmp=((SBase.value)*1+(calArlE+calCeEmp+calConFe+calICeEmp+calPensE+calPriEmp+calVaEmp)*1)*1;
+    calTotEmp=calSalE*1+calPensE*1+calArlE*1+calConFe*1+calICBF*1+calSENA*1+calCeEmp*1+calICeEmp*1+calPriEmp*1+calVaEmp*1+auxtr*1+SBase.value*1;
     calTotEmp=calTotEmp.toFixed(0);
     miTotEmp+=`<p>${calTotEmp}</p>`
     TotEmp.innerHTML=miTotEmp;
    }else{
     miTotEmp='';
-    calTotEmp=(SBase.value)*1+(calArlE+calCeEmp+calConFe+calICeEmp+calPensE+calPriEmp+calVaEmp)*1;
+    calTotEmp=calSalE*1+calPensE*1+calArlE*1+calConFe*1+calICBF*1+calSENA*1+calCeEmp*1+calICeEmp*1+calPriEmp*1+calVaEmp*1+auxtr*1+SBase.value*1;
     calTotEmp=calTotEmp.toFixed(0);
     miTotEmp+=`<p>${calTotEmp}</p>`
     TotEmp.innerHTML=miTotEmp;
@@ -517,4 +535,43 @@ if(miPensE==''){
       PriJun.innerHTML=miPriJun;
       PriDic.innerHTML=miPriJun;
       }
+  /*Funcion para icbf Empleador */
+    if(miICBF==''){
+      calICBF=(SBase.value)*0.03;
+      calICBF=calICBF.toFixed(0);
+      miICBF+=`<p>${calICBF}  </p>`
+      ICBF.innerHTML=miICBF;
+     }else{
+      miICBF='';
+      calICBF=(SBase.value)*0.03;
+      calICBF=calICBF.toFixed(0);
+      miICBF+=`<p>${calICBF}  </p>`
+      ICBF.innerHTML=miICBF;
+      }
+       /*Funcion para SENA Empleador */
+    if(miSENA==''){
+      calSENA=(SBase.value)*0.02;
+      calSENA=calSENA.toFixed(0);
+      miSENA+=`<p>${calSENA}  </p>`
+      SENA.innerHTML=miSENA;
+     }else{
+      miSENA='';
+      calSENA=(SBase.value)*0.02;
+      calSENA=calSENA.toFixed(0);
+      miSENA+=`<p>${calSENA}  </p>`
+      SENA.innerHTML=miSENA;
+      }
+/*Calculo del porcentaje del valor de un empleado */
+if(miPTot==''){
+  calPTot=(calTotEmp/(SBase.value))*100;
+  calPTot=calPTot.toFixed(0);
+  miPTot+=`<p>${calPTot}%  </p>`
+  PTot.innerHTML=miPTot;
+ }else{
+  miPTot='';
+  calPTot=(calTotEmp/(SBase.value))*100;
+  calPTot=calPTot.toFixed(0);
+  miPTot+=`<p>${calPTot}%  </p>`
+  PTot.innerHTML=miPTot;
+  }
 }
