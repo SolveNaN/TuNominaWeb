@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Nómina</h1>
+    <table id="tabla">
+        <thead>
+            <tr>
+                <th>Nombre</td>
+                <th>Salario</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>15000</td>
+                <td>Lucas</td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="crear">Crear</button>
+    <script>
+        var Tabla=document.getElementById('mitabla'),miboton=document.getElementById('crear');
+        miboton.onclick=function(){
+            var doc=new jsPDF('p','pt','latter');
+        }
+    </script>
+</body>
+</html>

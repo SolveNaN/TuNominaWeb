@@ -320,7 +320,7 @@
 })();
 /*Variables para el salario minimo */
 const SM=1160000;
-const auxtr=160406;
+const auxtr=140606;
 const SBase=document.getElementById('IBC');
 const SMMLV=document.getElementById('minimos');
 const SMMLV2=document.getElementById('minimos2');
@@ -381,7 +381,25 @@ let calPriJun=0;
 const PTot=document.getElementById('ptot');
 let miPTot='';
 let calPTot=0;
+/*Variables para salud Trabajador*/
+const SalTr=document.getElementById('saltr');
+let miSalTr='';
+let calSalTr=0;
+/*Variables para pension Trabajador*/
+const PenTr=document.getElementById('pentr');
+let miPenTr='';
+let calPenTr=0;
+/*Variables para FSP Trabajador*/
+const FSP=document.getElementById('fsp');
+let miFSP='';
+let calFSP=0;
+let sm=0;
+//variables para el sueldo
+const Sueldo=document.getElementById('sueldo');
+let miSueldo='';
+let calSueldo=0;
 /*La funcion */
+
 
 function calcular(){
   /*Para la camtidad de SMMLV */
@@ -574,4 +592,57 @@ if(miPTot==''){
   miPTot+=`<p>${calPTot}%  </p>`
   PTot.innerHTML=miPTot;
   }
+  /*Calculos para el trabajador */
+  /*Calculo Salud del Trabajador */
+  if(miSalTr==''){
+    calSalTr=SBase.value*0.04;
+    calSalTr=calSalTr.toFixed(0);
+    miSalTr+=`<p>${calSalTr}</p>`
+    SalTr.innerHTML=miSalTr;
+    PenTr.innerHTML=miSalTr;
+  }else{
+    miSalTr='';
+    calSalTr=SBase.value*0.04;
+    calSalTr=calSalTr.toFixed(0);
+    miSalTr+=`<p>${calSalTr}</p>`
+    SalTr.innerHTML=miSalTr;
+    PenTr.innerHTML=miSalTr;
+  }
+  /*FSP */
+  if(miFSP==''){
+    calSMMLV=SBase.value/1160000
+    if(calSMMLV>=4){
+      calFSP=SBase.value*0.01;
+    }else{
+      calFSP=0;
+    }
+    calFSP=calFSP.toFixed(0);
+    miFSP+=`<p>${calFSP}</p>`
+    FSP.innerHTML=miFSP;
+  }else{
+    miFSP='';
+    calSMMLV=SBase.value/1160000
+    if(calSMMLV>=4){
+      calFSP=SBase.value*0.01;
+    }else{
+      calFSP=0;
+    }
+    calFSP=calFSP.toFixed(0);
+    miFSP+=`<p>${calFSP}</p>`
+    FSP.innerHTML=miFSP;
+  }
+  /*Calculo del sueldo con deducidos */
+  if(miSueldo==''){
+    calSueldo=SBase.value*1;
+    calSueldo=(calSueldo+auxtr-2*calSalTr-calFSP).toFixed(0);
+    miSueldo+=`<p>${calSueldo}</p>`
+    Sueldo.innerHTML=miSueldo;
+   }else{
+    miSueldo='';
+    calSueldo=SBase.value*1;
+    calSueldo=(calSueldo+auxtr-2*calSalTr-calFSP).toFixed(0);
+    miSueldo+=`<p>${calSueldo}</p>`
+    Sueldo.innerHTML=miSueldo;
+    }
+
 }
